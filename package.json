@@ -1,0 +1,38 @@
+{
+  "name": "ClimateBeatsService",
+  "version": "1.0.0",
+  "description": "A RESTful microservice that suggests music playlists based on the current temperature of a city or coordinates.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "lint": "eslint src",
+    "format": "prettier --write src",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlanGarciaRdz/ClimateBeatsService.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlanGarciaRdz/ClimateBeatsService/issues"
+  },
+  "homepage": "https://github.com/AlanGarciaRdz/ClimateBeatsService#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "superjest": "^0.3.0"
+  }
+}
