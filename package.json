@@ -8,7 +8,7 @@
     "dev": "nodemon src/app.js",
     "lint": "eslint src",
     "format": "prettier --write src",
-    "test": "jest",
+    "test:e2e": "jest --config jest.config.js --runInBand",
     "deploy": "rsync -av -e \"ssh -i \"../challenge.pem\"\" -r --exclude node_modules/ --exclude log/ ./*  ubuntu@184.72.206.67:/opt/alan"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "fs": "^0.0.1-security",
+    "supertest": "^7.0.0",
     "winston": "^3.17.0"
   },
   "devDependencies": {

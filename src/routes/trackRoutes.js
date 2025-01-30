@@ -63,7 +63,7 @@ router.get('/tracks', async (req, res) => {
     console.error('Error fetching tracks', error.message);
     logError(`Error: ${error.message} at ${new Date().toISOString()}`);
     res
-      .status(500)
+      .status(400)
       .json({ error: 'Failed to fetch tracks', message: error.message });
   }
 });
