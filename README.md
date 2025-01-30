@@ -194,24 +194,17 @@ npm test
 
 The test suite covers:
 
-- Weather service functionality
-  - Temperature retrieval by city
-  - Temperature retrieval by coordinates
-  - Error handling
-- Spotify service functionality
-  - Track recommendations based on temperature
-  - Authentication
-  - Error handling
 - API endpoints
-  - `/api/tracks` with city parameter
-  - `/api/tracks` with coordinates
-  - `/api/stats` endpoint
-  - Input validation
-  - Error responses
+- Health check
+- `/api/tracks` with city parameter Zapopan
+- `/api/tracks` with coordinates lat & Lon
+- `/api/tracks` Error handler without location provided
+- `/api/tracks` Error handler invalida coordinates
+- `/api/stats` endpoint
 
 ### Deployment
 
-The project includes a deployment script that uses rsync to deploy to a specified server:
+The project includes a deployment script that uses rsync to deploy to a specified server & ask admin (alan.josue.garcia.rdz@gmail.com) in case you need access.
 
 ```bash
 npm run deploy
