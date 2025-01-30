@@ -19,7 +19,7 @@ class SpotifyService {
         genre = 'party';
       } else if (temp >= 15 && temp <= 30) {
         genre = 'pop';
-      } else if (temp >= 10 && temp <= 15) {
+      } else if (temp >= 10 && temp <= 14) {
         genre = 'rock';
       } else {
         genre = 'classical';
@@ -42,7 +42,7 @@ class SpotifyService {
         artist: item.artists.map((artist) => artist.name), //this is an array in case are more than one artist for a track
       }));
 
-      return tracks;
+      return genre, tracks;
     } catch (error) {
       console.error('Error fetching tracks by temperature', error.message);
       throw new Error('Failed to fetch Tracks');

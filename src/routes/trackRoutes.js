@@ -1,6 +1,11 @@
 const express = require('express');
 const SpotifyService = require('../services/spotifyService');
 const WeatherService = require('../services/weatherService');
+const {
+  logRequestStat,
+  logError,
+  getStatistics,
+} = require('../services/loggerService');
 const spotifyAuthMiddleware = require('../middleware/spotifyAuthMiddleware');
 
 const router = express.Router();
@@ -24,6 +29,8 @@ router.get('/tracks', async (req, res) => {
 
   try {
     let temperature;
+    let location = city || `${lat}, ${lon}`; //Logger
+    let startTime = Date.now();
 
     //STEP1: Fetch tempreature based on city or coord
     if (city) {
@@ -37,12 +44,34 @@ router.get('/tracks', async (req, res) => {
       req.spotifyAccessToken,
       temperature
     );
+    let endTime = Date.now(); //log end
+    let duration = endTime - startTime;
+
+    // Log request details to the file
+    const requestDetails = {
+      timestamp: new Date().toISOString(),
+      endpoint: req.originalUrl,
+      duration: duration,
+      location: location,
+      tracks: tracks,
+    };
+    // Log request details
+    logRequestStat(requestDetails); // Log to file
 
     res.json({ temperature, tracks });
   } catch (error) {
     console.error('Error fetching tracks', error.message);
-    res.status(500).json({ error: 'Failed to fetch tracks' });
+    logError(`Error: ${error.message} at ${new Date().toISOString()}`);
+    res
+      .status(500)
+      .json({ error: 'Failed to fetch tracks', message: error.message });
   }
+});
+
+// Add the /stats endpoint
+router.get('/stats', (req, res) => {
+  const stats = getStatistics(); // Read the statistics from the file
+  res.json(stats);
 });
 
 module.exports = router;
