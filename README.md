@@ -52,6 +52,11 @@ npm start
 
 ## API Endpoints
 
+### Documentation of the API:
+
+Please take a look to my documentation publish at:
+[API Documentation](http://184.72.206.67/documentation/api-documentation.html)
+
 ### Health Check
 
 ```
@@ -116,7 +121,25 @@ Example Response:
 }
 ```
 
-## Error Responses
+### Error Handling
+
+The service implements a comprehensive error handling strategy:
+
+1. **Operational Errors**:
+
+   - API timeout handling
+   - Rate limit management
+   - Invalid input validation
+
+2. **Programming Errors**:
+
+   - Global error handler
+   - Async error wrapper
+   - Validation error handler
+
+3. **Error Logging**:
+   - Error stack traces
+   - Request context
 
 ### Invalid Request
 
@@ -219,13 +242,87 @@ Note: This requires proper SSH key configuration (`challenge.pem`).
 - `SPOTIFY_CLIENT_ID`: Spotify API client ID
 - `SPOTIFY_CLIENT_SECRET`: Spotify API client secret
 
-## Contributing
+## Solution Details
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+### Architecture Overview
+
+The ClimateBeatsService follows a microservice architecture pattern with the following key characteristics:
+
+- **Service-Oriented**: Independent service focusing on a single business capability
+- **RESTful API Design**: Following REST principles for clear and consistent API endpoints
+- **Middleware-based Authentication**: Centralized Spotify authentication handling
+- **Separation of Concerns**: Clear distinction between routes, services, and middleware
+- **Stateless Operation**: No session state maintained between requests
+
+### Design Patterns
+
+1. **Middleware Pattern**
+
+   - Authentication middleware for Spotify token management
+   - Error handling middleware for consistent error responses
+   - Logging middleware for request tracking
+
+2. **Service Layer Pattern**
+
+   - Separate services for Weather, Spotify, and Logging
+   - Encapsulated business logic within respective services
+   - Clean separation between data access and business rules
+
+3. **Factory Pattern**
+   - Service instantiation with dependency injection
+   - Centralized configuration management
+
+### Technical Stack
+
+#### Core Framework and Runtime
+
+- **Node.js**: v20.13.1 runtime environment
+- **Express.js**: Web application framework
+- **PM2**: Production process manager
+
+#### External APIs
+
+- **OpenWeather API**: Weather data provider
+- **Spotify API**: Music recommendation engine
+
+#### Development Tools
+
+- **ESLint**: Code linting with custom configuration
+- **Prettier**: Code formatting
+- **Jest**: Testing framework
+
+#### Logging and Monitoring
+
+- **Winston**: Logging framework
+
+### Security Measures
+
+1. **API Security**:
+
+   - Rate limiting
+   - CORS configuration
+   - Input validation
+   - Environment variable protection
+
+2. **Authentication**:
+   - Spotify OAuth 2.0
+   - Token validation
+
+## Infrastructure Requirements
+
+### Minimum Specifications
+
+- CPU: 1 vCPU
+- RAM: 1 GB
+- Storage: 10 GB SSD
+- Network: 100 Mbps
+
+### Recommended Specifications
+
+- CPU: 2 vCPU
+- RAM: 2 GB
+- Storage: 20 GB SSD
+- Network: 1 Gbps
 
 ## License
 
